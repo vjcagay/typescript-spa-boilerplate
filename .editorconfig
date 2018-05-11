@@ -1,0 +1,23 @@
+# http://editorconfig.org
+
+# top-most EditorConfig
+root = true
+
+# Must end in Unix style newlines
+# and files should end in an empty new line
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# Charset must be in UTF-8
+charset = utf-8
+
+# Indentions must be two spaces
+indent_style = space
+indent_size = 2
+
+# Remove all trailing whitespaces on saving
+trim_trailing_whitespace = true
+
+# Because TypeScript is a little verbose
+max_line_length = 120
