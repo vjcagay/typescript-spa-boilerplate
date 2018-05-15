@@ -1,8 +1,17 @@
 import * as HTMLWebpackPlugin from "html-webpack-plugin";
-import { resolve } from "path";
-import { Configuration } from "webpack";
+import { join, resolve } from "path";
+import { Configuration as WebpackConfig, HotModuleReplacementPlugin } from "webpack";
+import { Configuration as DevServerConfig } from "webpack-dev-server";
 
-const config: Configuration = {
+const config: WebpackConfig = {
+  devServer: ((): DevServerConfig => {
+    return {
+      contentBase: join(__dirname, "dist"),
+      hotOnly: true,
+      inline: true,
+    };
+  })(),
+  devtool: "inline-source-map",
   entry: "./src/index.ts",
   mode: "development",
   module: {
@@ -15,8 +24,10 @@ const config: Configuration = {
   output: {
     filename: "app.js",
     path: resolve(__dirname, "dist"),
+    publicPath: "/",
   },
   plugins: [
+    new HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
       filename: "index.html",
       inject: "body",
