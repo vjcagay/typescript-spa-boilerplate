@@ -25,7 +25,7 @@ const config = (dirPath: string): Configuration => {
       new HTMLWebpackPlugin({
         filename: "index.html",
         inject: "body",
-        template: join(dirPath, "/src/index.html"),
+        template: join(dirPath, "/src/html/index.html"),
         title: "Webpack TypeScript",
       }),
     ],
