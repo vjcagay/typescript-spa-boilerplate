@@ -1,19 +1,13 @@
-import * as HTMLWebpackPlugin from "html-webpack-plugin";
 import { join, resolve } from "path";
-import { Configuration as WebpackConfig, HotModuleReplacementPlugin } from "webpack";
-import { Configuration as DevServerConfig } from "webpack-dev-server";
+import { Configuration as WebpackConfig } from "webpack";
 
-const config: WebpackConfig = {
-  devServer: ((): DevServerConfig => {
-    return {
-      contentBase: join(__dirname, "dist"),
-      hotOnly: true,
-      inline: true,
-    };
-  })(),
-  devtool: "inline-source-map",
+import devConfig from "./webpack/development";
+
+const mode = process.env.NODE_ENV === "production" ? "production" : "development";
+
+let config: WebpackConfig = {
   entry: "./src/index.ts",
-  mode: "development",
+  mode,
   module: {
     rules: [{
       exclude: /node_modules/,
@@ -21,23 +15,11 @@ const config: WebpackConfig = {
       use: "ts-loader",
     }],
   },
-  output: {
-    filename: "app.js",
-    path: resolve(__dirname, "dist"),
-    publicPath: "/",
-  },
-  plugins: [
-    new HotModuleReplacementPlugin(),
-    new HTMLWebpackPlugin({
-      filename: "index.html",
-      inject: "body",
-      template: "./src/index.html",
-      title: "Webpack TypeScript",
-    }),
-  ],
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },
 };
+
+config = { ...config, ...devConfig(__dirname) };
 
 export default config;
