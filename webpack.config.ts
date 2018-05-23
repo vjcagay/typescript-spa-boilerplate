@@ -28,10 +28,4 @@ const config = (env: any, argv: WebpackConfig): WebpackConfig => {
   return { ...commonConfig, ...additionalConfig };
 };
 
-// if (mode === "production") {
-//   config = { ...config, ...prodConfig(__dirname) };
-// } else {
-//   config = { ...config, ...devConfig(__dirname) };
-// }
-
 export default config;

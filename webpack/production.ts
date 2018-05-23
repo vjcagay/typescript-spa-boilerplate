@@ -1,3 +1,4 @@
+import * as CleanWebpackPlugin from "clean-webpack-plugin";
 import * as HTMLWebpackPlugin from "html-webpack-plugin";
 import { join } from "path";
 import { Configuration } from "webpack";
@@ -10,6 +11,10 @@ const config = (dirPath: string): Configuration => {
       publicPath: "/",
     },
     plugins: [
+      new CleanWebpackPlugin([join(dirPath, "/dist")], {
+        root: process.cwd(),
+        verbose: true,
+      }),
       new HTMLWebpackPlugin({
         filename: "index.html",
         inject: "body",
