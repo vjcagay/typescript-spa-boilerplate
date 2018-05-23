@@ -7,7 +7,7 @@ const config = (dirPath: string): Configuration => {
   return {
     devServer: ((): DevServerConfig => {
       return {
-        contentBase: join(__dirname, "dist"),
+        contentBase: join(dirPath, "dist"),
         hotOnly: true,
         inline: true,
         publicPath: "/",
@@ -17,7 +17,7 @@ const config = (dirPath: string): Configuration => {
     output: {
       devtoolModuleFilenameTemplate: "webpack:///[absolute-resource-path]",
       filename: "[name].js",
-      path: join(dirPath, "dev"),
+      path: join(dirPath, "/dev"),
       publicPath: "/",
     },
     plugins: [
