@@ -1,4 +1,4 @@
-import { loader as miniCssLoader } from "mini-css-extract-plugin";
+import { loader as MiniCssExtractPluginLoader } from "mini-css-extract-plugin";
 import { Configuration as WebpackConfig } from "webpack";
 
 import devConfig from "./webpack/development";
@@ -15,7 +15,7 @@ const config = (env: any, argv: WebpackConfig): WebpackConfig => {
         use: "ts-loader",
       }, {
         test: /\.scss$/,
-        use: [this.mode === "production" ? miniCssLoader : "style-loader", "css-loader", "sass-loader"],
+        use: [argv.mode === "production" ? MiniCssExtractPluginLoader : "style-loader", "css-loader", "sass-loader"],
       }],
     },
     resolve: {

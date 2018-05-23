@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile:development": "webpack --mode development",
-    "compile:production": "webpack --mode production",
+    "compile:development": "webpack --mode=development",
+    "compile:production": "webpack --mode=production",
     "tslint": "tslint --project ./"
   },
   "keywords": [
@@ -25,6 +25,7 @@
     "@types/jest": "^22.2.3",
     "@types/mini-css-extract-plugin": "^0.2.0",
     "@types/node": "^10.1.2",
+    "@types/optimize-css-assets-webpack-plugin": "^1.3.3",
     "@types/webpack": "^4.4.0",
     "@types/webpack-dev-server": "^2.9.4",
     "clean-webpack-plugin": "^0.1.19",
@@ -33,6 +34,7 @@
     "jest": "^22.4.4",
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.9.0",
+    "optimize-css-assets-webpack-plugin": "^4.0.1",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "ts-jest": "^22.4.6",
