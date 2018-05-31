@@ -1,13 +1,14 @@
+import * as AddAssetHTMLWebpackPlugin from "add-asset-html-webpack-plugin";
 import * as HTMLWebpackPlugin from "html-webpack-plugin";
-import { join } from "path";
-import { Configuration, HotModuleReplacementPlugin } from "webpack";
+import { join, resolve } from "path";
+import { Configuration, DllReferencePlugin, HotModuleReplacementPlugin } from "webpack";
 import { Configuration as DevServerConfig } from "webpack-dev-server";
 
 const config = (dirPath: string): Configuration => {
   return {
     devServer: ((): DevServerConfig => {
       return {
-        contentBase: join(dirPath, "dist"),
+        contentBase: join(dirPath, "dev"),
         hotOnly: true,
         inline: true,
         publicPath: "/",
@@ -22,9 +23,17 @@ const config = (dirPath: string): Configuration => {
     },
     plugins: [
       new HotModuleReplacementPlugin(),
+      new DllReferencePlugin({
+        context: ".",
+        manifest: resolve(join(dirPath, "/dev/libs-manifest.json")),
+      }),
+      new AddAssetHTMLWebpackPlugin({
+        filepath: resolve(join(dirPath, "/dev/libs.js")),
+        publicPath: "./",
+      }),
       new HTMLWebpackPlugin({
         filename: "index.html",
-        inject: "body",
+        inject: true,
         template: join(dirPath, "/src/html/index.html"),
         title: "Webpack TypeScript",
       }),
