@@ -1,6 +1,7 @@
 /**
  * Don't forget to run the DLL config for WebPack first for correct DLL references
  */
+import * as AutoPrefixer from "autoprefixer";
 import { loader as MiniCssExtractPluginLoader } from "mini-css-extract-plugin";
 import { Configuration as WebpackConfig } from "webpack";
 
@@ -24,6 +25,7 @@ const config = (env: any, argv: WebpackConfig): WebpackConfig => {
         use: [
           argv.mode === "production" ? MiniCssExtractPluginLoader : "style-loader",
           "css-loader?sourceMap",
+          { loader: "postcss-loader", options: { plugins: [AutoPrefixer] } },
           "sass-loader?sourceMap",
         ],
       }, {
