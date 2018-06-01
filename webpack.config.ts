@@ -21,7 +21,11 @@ const config = (env: any, argv: WebpackConfig): WebpackConfig => {
         use: "ts-loader",
       }, {
         test: /\.scss$/,
-        use: [argv.mode === "production" ? MiniCssExtractPluginLoader : "style-loader", "css-loader", "sass-loader"],
+        use: [
+          argv.mode === "production" ? MiniCssExtractPluginLoader : "style-loader",
+          "css-loader?sourceMap",
+          "sass-loader?sourceMap",
+        ],
       }, {
         test: /\.(eot|svg|ttf|otf|woff|woff2)$/,
         use: "file-loader?name=[name].[ext]",

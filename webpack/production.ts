@@ -26,6 +26,11 @@ const config = (dirPath: string): Configuration => {
       }),
       new OptimizeCSSAssetsWebpackPlugin({
         canPrint: true,
+        cssProcessorOptions: { // By default this is cssnano
+          map: {
+            inline: false, // Setting this to false if you want to have css-loader/sass-loader produce source-maps
+          },
+        },
       }),
       new HTMLWebpackPlugin({
         filename: "index.html",
