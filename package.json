@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile:development": "webpack --mode=development",
-    "compile:production": "webpack --mode=production",
+    "compile:development:dll": "webpack --config webpack.config.dll.ts --mode=development",
+    "compile:development:source": "webpack --mode=development",
+    "compile:production:dll": "webpack --config webpack.config.dll.ts --mode=production",
+    "compile:production:source": "webpack --mode=production",
     "server": "webpack-dev-server --mode=development",
     "tslint": "tslint --project ./"
   },

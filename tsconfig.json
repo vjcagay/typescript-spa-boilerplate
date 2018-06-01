@@ -2,6 +2,7 @@
   "compilerOptions": {
     "noImplicitAny": true,
     "module": "commonjs",
+    "sourceMap": true,
     "target": "es5",
     "types": [
       "node",

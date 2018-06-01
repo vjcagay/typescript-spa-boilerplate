@@ -19,7 +19,6 @@ const config = (dirPath: string): Configuration => {
       devtoolModuleFilenameTemplate: "webpack:///[absolute-resource-path]",
       filename: "[name].js",
       path: join(dirPath, "/dev"),
-      publicPath: "/",
     },
     plugins: [
       new HotModuleReplacementPlugin(),
