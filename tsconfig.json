@@ -2,6 +2,7 @@
   "compilerOptions": {
     "noImplicitAny": true,
     "module": "commonjs",
+    "sourceMap": true,
     "target": "es5",
     "types": [
       "node",
@@ -16,6 +17,7 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "webpack.config.ts"
+    "webpack.config.ts",
+    "webpack/@types/*.d.ts"
   ]
 }
