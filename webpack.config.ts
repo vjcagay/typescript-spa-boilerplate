@@ -22,6 +22,9 @@ const config = (env: any, argv: WebpackConfig): WebpackConfig => {
       }, {
         test: /\.scss$/,
         use: [argv.mode === "production" ? MiniCssExtractPluginLoader : "style-loader", "css-loader", "sass-loader"],
+      }, {
+        test: /\.(eot|svg|ttf|otf|woff|woff2)$/,
+        use: "file-loader?name=[name].[ext]",
       }],
     },
     resolve: {
