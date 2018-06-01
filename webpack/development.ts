@@ -1,4 +1,4 @@
-import * as AddAssetHTMLWebpackPlugin from "add-asset-html-webpack-plugin";
+import * as HTMLWebpackIncludeAssetsPlugin from "html-webpack-include-assets-plugin";
 import * as HTMLWebpackPlugin from "html-webpack-plugin";
 import { join, resolve } from "path";
 import { Configuration, DllReferencePlugin, HotModuleReplacementPlugin } from "webpack";
@@ -27,15 +27,16 @@ const config = (dirPath: string): Configuration => {
         context: ".",
         manifest: resolve(join(dirPath, "/dev/libs-manifest.json")),
       }),
-      new AddAssetHTMLWebpackPlugin({
-        filepath: resolve(join(dirPath, "/dev/libs.js")),
-        publicPath: "./",
-      }),
       new HTMLWebpackPlugin({
         filename: "index.html",
         inject: true,
         template: join(dirPath, "/src/html/index.html"),
         title: "Webpack TypeScript",
+      }),
+      new HTMLWebpackIncludeAssetsPlugin({
+        append: false,
+        assets: ["libs.js"],
+        publicPath: "/",
       }),
     ],
   };
