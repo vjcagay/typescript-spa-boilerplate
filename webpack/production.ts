@@ -1,4 +1,5 @@
 import * as CleanWebpackPlugin from "clean-webpack-plugin";
+import * as CompressionWebpackPlugin from "compression-webpack-plugin";
 import * as HTMLWebpackIncludeAssetsPlugin from "html-webpack-include-assets-plugin";
 import * as HTMLWebpackPlugin from "html-webpack-plugin";
 import * as MiniCSSExtractPlugin from "mini-css-extract-plugin";
@@ -47,6 +48,13 @@ const config = (dirPath: string): Configuration => {
           path: "./",
         }],
         publicPath: "/",
+      }),
+      new CompressionWebpackPlugin({
+        algorithm: "gzip",
+        asset: "[path].gz[query]",
+        minRatio: 0.8,
+        test: /\.(js|html|css)$/,
+        threshold: 10240, // Customize this to the amount you think is big enough to enable compression (in bytes)
       }),
     ],
   };
