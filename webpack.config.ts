@@ -13,7 +13,9 @@ const config = (env: any, argv: WebpackConfig): WebpackConfig => {
    * The common WebPack configuration no matter what environment it is run on
    */
   const commonConfig: WebpackConfig = {
-    entry: "./src/ts/index.ts",
+    entry: {
+      app: "./src/ts/index.ts",
+    },
     mode: argv.mode,
     module: {
       rules: [{

@@ -20,7 +20,7 @@ const config = (env: any, argv: Configuration): Configuration => {
   const commonDLLConfig: Configuration = {
     devtool: "inline-source-map",
     entry: {
-      libs: ["./src/ts/dll.ts"], // You can replace it with an array of dlls or imports of libraries
+      libs: ["./src/ts/dll.ts"], // Array of dlls or imports of libraries
     },
     mode: argv.mode,
     module: {

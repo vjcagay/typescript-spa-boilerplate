@@ -16,13 +16,17 @@ const config = (dirPath: string): Configuration => {
       publicPath: "/",
     },
     plugins: [
+      new CleanWebpackPlugin([join(dirPath, "/dist/app.*.*"), join(dirPath, "/dist/styles.*.*")], {
+        root: process.cwd(),
+        verbose: true,
+      }),
       new DllReferencePlugin({
         context: ".",
         manifest: resolve(join(dirPath, "/dist/libs-manifest.json")),
       }),
       new MiniCSSExtractPlugin({
         chunkFilename: "[id].[hash].css",
-        filename: "[name].[hash].css",
+        filename: "styles.[hash].css",
       }),
       new OptimizeCSSAssetsWebpackPlugin({
         canPrint: true,
