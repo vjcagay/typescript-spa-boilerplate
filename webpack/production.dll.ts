@@ -8,7 +8,7 @@ const config = (dirPath: string): Configuration => {
     devtool: "source-map",
     output: {
       filename: "[name].[hash].js",
-      library: "[name]",
+      library: "libs",
       path: join(dirPath, "/dist"),
     },
     plugins: [

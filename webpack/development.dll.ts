@@ -6,9 +6,8 @@ const config = (dirPath: string): Configuration => {
   return {
     devtool: "inline-source-map",
     output: {
-      devtoolModuleFilenameTemplate: "webpack:///[absolute-resource-path]",
       filename: "[name].js",
-      library: "[name]",
+      library: "libs",
       path: join(dirPath, "/dev"),
       publicPath: "/",
     },
