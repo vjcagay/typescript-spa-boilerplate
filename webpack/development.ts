@@ -9,6 +9,7 @@ const config = (dirPath: string): Configuration => {
     devServer: ((): DevServerConfig => {
       return {
         contentBase: join(dirPath, "dev"),
+        host: "0.0.0.0",
         hotOnly: true,
         inline: true,
         publicPath: "/",
