@@ -71,6 +71,32 @@ $ npm run compile:production:source # compile application code
 - You don't need to run `npm run compile:<environment>:dll` all the time but only when you add/remove libraries on `src/ts/dll.ts`.
 - Update `package.json` and modify the necessary fields you need to fit your application.
 - Modify `tsconfig.json` to add/remove TypeScript-specific features.
+- Since `v7.0.0` of `ts-node` do not use `include` in `ts-config` anymore. That means if you update to this version and you have custom type definition files (e.g. you made a custom typing for a library that does not have one) `ts-node` will fail to discover them and spit the `error TS7016`. To solve this problem, you must move from `include` to `paths` inside `compilerOptions`. Remember to also set your `baseUrl` first before you can use `paths`.
+
+  Before `ts-node v7.0.0`
+  ```json
+    {
+      "compilerOptions": {},
+      "exclude": [],
+      "include": [
+        "this-does-not-work-anymore.d.ts",
+      ]
+    }
+  ```
+  After `ts-node v7.0.0`
+  ```json
+    // After ts-node v7.0.0
+    {
+      "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+          "this-typing-works": ["this-typing-works.d.ts"]
+        }
+      },
+      "exclude": [],
+      "include": []
+    }
+  ```
 
 ## Contributing
 Please file an issue if you find a bug or have concerns or make a pull request if you like some sensible changes!
