@@ -21,7 +21,7 @@ const config = (env: any, argv: WebpackConfig): WebpackConfig => {
       rules: [{
         exclude: /node_modules/,
         test: /\.ts?$/,
-        use: "ts-loader",
+        use: "ts-loader", // Change to loader: "ts-loader" when using with vue-loader
       }, {
         test: /\.scss$/,
         use: [
