@@ -1,7 +1,12 @@
 import * as HTMLWebpackIncludeAssetsPlugin from "html-webpack-include-assets-plugin";
 import * as HTMLWebpackPlugin from "html-webpack-plugin";
 import { join, resolve } from "path";
-import { Configuration, DllReferencePlugin, HotModuleReplacementPlugin } from "webpack";
+import {
+  Configuration,
+  DevtoolModuleFilenameTemplateInfo,
+  DllReferencePlugin,
+  HotModuleReplacementPlugin,
+} from "webpack";
 import { Configuration as DevServerConfig } from "webpack-dev-server";
 
 const config = (dirPath: string): Configuration => {
@@ -15,9 +20,11 @@ const config = (dirPath: string): Configuration => {
         publicPath: "/",
       };
     })(),
-    devtool: "inline-source-map",
+    devtool: "eval-source-map",
     output: {
-      devtoolModuleFilenameTemplate: "webpack:///[absolute-resource-path]",
+      // You might need to modify this to suit your own environments
+      devtoolFallbackModuleFilenameTemplate: "webpack:///[resource-path]?[hash]",
+      devtoolModuleFilenameTemplate: (info: DevtoolModuleFilenameTemplateInfo) => `sources://${info.resourcePath}`,
       filename: "[name].js",
       path: join(dirPath, "/dev"),
       publicPath: "/",

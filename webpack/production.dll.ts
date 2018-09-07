@@ -22,7 +22,6 @@ const config = (dirPath: string): Configuration => {
       }),
       new CompressionWebpackPlugin({
         algorithm: "gzip",
-        asset: "[path].gz[query]",
         minRatio: 0.8,
         test: /\.(js|html|css)$/,
         threshold: 10240, // Customize this to the amount you think is big enough to enable compression (in bytes)

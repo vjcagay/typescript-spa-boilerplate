@@ -4,7 +4,7 @@ import { Configuration, DllPlugin } from "webpack";
 
 const config = (dirPath: string): Configuration => {
   return {
-    devtool: "inline-source-map",
+    devtool: "eval-source-map",
     output: {
       filename: "[name].js",
       library: "libs",
