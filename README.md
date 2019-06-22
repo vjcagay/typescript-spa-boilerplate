@@ -8,7 +8,7 @@ This boilerplate is designed to be as simplistic as it can be so that you can ad
 - [SASS](https://sass-lang.com) support
 - Separate output files for vendor libraries using webpack's [DLLPlugin](https://webpack.js.org/plugins/dll-plugin)
 - [Hot Module Replacement ](https://webpack.js.org/concepts/hot-module-replacement) on the development server
-- Linting using [TSLint](https://palantir.github.io/tslint/)
+- Linting using [ESLint](https://eslint.org)
 - Unit Testing using [Jest](https://facebook.github.io/jest/)
 
 ## What's Not Included?
@@ -97,6 +97,17 @@ $ npm run compile:production:source # compile application code
       "include": []
     }
   ```
+
+## Notes for Visual Studio Code Users
+To enable ESLint for TypeScript files, configure the plugin to:
+```json
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ]
+```
 
 ## Contributing
 Please file an issue if you find a bug or have concerns or make a pull request if you like some sensible changes!
