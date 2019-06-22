@@ -1,4 +1,4 @@
-import * as CleanWebpackPlugin from "clean-webpack-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import { join } from "path";
 import { Configuration, DllPlugin } from "webpack";
 
@@ -12,8 +12,8 @@ const config = (dirPath: string): Configuration => {
       publicPath: "/",
     },
     plugins: [
-      new CleanWebpackPlugin([join(dirPath, "/dev")], {
-        root: process.cwd(),
+      new CleanWebpackPlugin({
+        cleanOnceBeforeBuildPatterns: [join(dirPath, "/dev")],
         verbose: true,
       }),
       new DllPlugin({

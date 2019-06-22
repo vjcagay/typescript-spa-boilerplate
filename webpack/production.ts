@@ -1,4 +1,4 @@
-import * as CleanWebpackPlugin from "clean-webpack-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import * as CompressionWebpackPlugin from "compression-webpack-plugin";
 import * as HTMLWebpackIncludeAssetsPlugin from "html-webpack-include-assets-plugin";
 import * as HTMLWebpackPlugin from "html-webpack-plugin";
@@ -16,8 +16,8 @@ const config = (dirPath: string): Configuration => {
       publicPath: "/",
     },
     plugins: [
-      new CleanWebpackPlugin([join(dirPath, "/dist/app.*.*"), join(dirPath, "/dist/styles.*.*")], {
-        root: process.cwd(),
+      new CleanWebpackPlugin({
+        cleanOnceBeforeBuildPatterns: [join(dirPath, "/dist/app.*.*"), join(dirPath, "/dist/styles.*.*")],
         verbose: true,
       }),
       new DllReferencePlugin({

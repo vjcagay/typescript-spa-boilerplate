@@ -1,4 +1,4 @@
-import * as CleanWebpackPlugin from "clean-webpack-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import * as CompressionWebpackPlugin from "compression-webpack-plugin";
 import { join } from "path";
 import { Configuration, DllPlugin } from "webpack";
@@ -12,8 +12,8 @@ const config = (dirPath: string): Configuration => {
       path: join(dirPath, "/dist"),
     },
     plugins: [
-      new CleanWebpackPlugin([join(dirPath, "/dist")], {
-        root: process.cwd(),
+      new CleanWebpackPlugin({
+        cleanOnceBeforeBuildPatterns: [join(dirPath, "/dist/")],
         verbose: true,
       }),
       new DllPlugin({
