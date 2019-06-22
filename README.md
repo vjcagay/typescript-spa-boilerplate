@@ -24,7 +24,7 @@ I might add these features above into the boilerplate in the future or by popula
 ## Setup
 Clone this repo with your application name as the second argument:
 ```bash
-$ git clone https://github.com/vjcagay/webpack-typescript.git <application-name>
+$ git clone https://github.com/vjcagay/webpack-typescript-sass.git <application-name>
 $ cd <application-name>
 ```
 
