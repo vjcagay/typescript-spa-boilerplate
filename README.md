@@ -5,7 +5,7 @@ This is a boilerplate code that can get you started for developing applications 
 This boilerplate is designed to be as simplistic as it can be so that you can add more features yourself without much trouble:
 
 - Build with [webpack](https://webpack.js.org) 4
-- [SASS](https://sass-lang.com) support
+- [Styled-Components](https://www.styled-components.com) support
 - Separate output files for vendor libraries using webpack's [DLLPlugin](https://webpack.js.org/plugins/dll-plugin)
 - [Hot Module Replacement ](https://webpack.js.org/concepts/hot-module-replacement) on the development server
 - Linting using [ESLint](https://eslint.org)
@@ -14,7 +14,7 @@ This boilerplate is designed to be as simplistic as it can be so that you can ad
 ## What's Not Included?
 Since there are a plethora of options out there I would like you to decide for yourself for these kind of stuff:
 
-- Linting CSS/SASS
+- Linting CSS
 - Git commit hooks (e.g. must pass unit tests first before allowing push)
 - Fancy commit message formats
 - Continuous Integration services
@@ -24,7 +24,7 @@ I might add these features above into the boilerplate in the future or by popula
 ## Setup
 Clone this repo with your application name as the second argument:
 ```bash
-$ git clone https://github.com/vjcagay/webpack-typescript-sass.git <application-name>
+$ git clone https://github.com/vjcagay/webpack-typescript-styled-components.git <application-name>
 $ cd <application-name>
 ```
 
@@ -39,16 +39,15 @@ To make compiles faster, you can separate the vendor libraries from application 
 
 Example:
 ```typescript
-// index.ts
-import Vue from "vue";
-import router from "vue-router";
-const app = new Vue({ router });
+// index.tsx
+import * as React from "react";
+import styled from "styled-components";
 ```
 
 ```typescript
 // dll.ts
-import "vue";
-import "vue-router";
+import "react";
+import "styled-components";
 ```
 
 Therefore you need to compile the vendor libraries first before your application code. These have been already setup for both the development and production environments so all you need to do is:
