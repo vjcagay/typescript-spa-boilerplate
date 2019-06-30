@@ -1,8 +1,6 @@
 /**
  * Don't forget to run the DLL config for WebPack first for correct DLL references
  */
-import * as AutoPrefixer from "autoprefixer";
-import { loader as MiniCssExtractPluginLoader } from "mini-css-extract-plugin";
 import { Configuration as WebpackConfig } from "webpack";
 
 import devConfig from "./webpack/development";
@@ -14,22 +12,14 @@ const config = (env: any, argv: WebpackConfig): WebpackConfig => {
    */
   const commonConfig: WebpackConfig = {
     entry: {
-      app: "./src/ts/index.ts",
+      app: "./src/ts/index.tsx",
     },
     mode: argv.mode,
     module: {
       rules: [{
         exclude: /node_modules/,
-        test: /\.ts?$/,
+        test: /\.tsx?$/,
         use: "ts-loader", // Change to loader: "ts-loader" if you need to pass options
-      }, {
-        test: /\.scss$/,
-        use: [
-          argv.mode === "production" ? MiniCssExtractPluginLoader : "style-loader",
-          "css-loader?sourceMap",
-          { loader: "postcss-loader", options: { plugins: [AutoPrefixer] } },
-          "sass-loader?sourceMap",
-        ],
       }, {
         test: /\.(eot|svg|ttf|otf|woff|woff2)$/,
         use: "file-loader?name=[name].[ext]",

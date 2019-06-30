@@ -2,8 +2,6 @@ import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import * as CompressionWebpackPlugin from "compression-webpack-plugin";
 import * as HTMLWebpackIncludeAssetsPlugin from "html-webpack-include-assets-plugin";
 import * as HTMLWebpackPlugin from "html-webpack-plugin";
-import * as MiniCSSExtractPlugin from "mini-css-extract-plugin";
-import * as OptimizeCSSAssetsWebpackPlugin from "optimize-css-assets-webpack-plugin";
 import { join, resolve } from "path";
 import { Configuration, DllReferencePlugin } from "webpack";
 
@@ -23,18 +21,6 @@ const config = (dirPath: string): Configuration => {
       new DllReferencePlugin({
         context: ".",
         manifest: resolve(join(dirPath, "/dist/libs-manifest.json")),
-      }),
-      new MiniCSSExtractPlugin({
-        chunkFilename: "[id].[hash].css",
-        filename: "styles.[hash].css",
-      }),
-      new OptimizeCSSAssetsWebpackPlugin({
-        canPrint: true,
-        cssProcessorOptions: { // By default this is cssnano
-          map: {
-            inline: false, // Setting this to false if you want to have css-loader/sass-loader produce source-maps
-          },
-        },
       }),
       new HTMLWebpackPlugin({
         filename: "index.html",
