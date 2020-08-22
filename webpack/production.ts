@@ -1,7 +1,7 @@
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import * as CompressionWebpackPlugin from "compression-webpack-plugin";
-import * as HTMLWebpackIncludeAssetsPlugin from "html-webpack-include-assets-plugin";
 import * as HTMLWebpackPlugin from "html-webpack-plugin";
+import * as HTMLWebpackTagsPlugin from "html-webpack-tags-plugin";
 import { join, resolve } from "path";
 import { Configuration, DllReferencePlugin } from "webpack";
 
@@ -35,13 +35,15 @@ const config = (dirPath: string): Configuration => {
         template: join(dirPath, "/src/html/index.html"),
         title: "Webpack TypeScript",
       }),
-      new HTMLWebpackIncludeAssetsPlugin({
+      new HTMLWebpackTagsPlugin({
         append: false,
-        assets: [{
-          glob: "libs.*.js",
-          globPath: join(dirPath, "/dist"),
-          path: "./",
-        }],
+        scripts: [
+          {
+            glob: "libs.*.js",
+            globPath: join(dirPath, "/dist"),
+            path: "./",
+          },
+        ],
         publicPath: "/",
       }),
       new CompressionWebpackPlugin({

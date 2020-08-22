@@ -10,9 +10,6 @@
       "jest"
     ],
     "baseUrl": ".",
-    "paths": {
-      "html-webpack-include-assets-plugin": ["webpack/@types/html-webpack-include-assets-plugin.d.ts"]
-    }
   },
   "exclude": [
     "node_modules",

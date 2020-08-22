@@ -1,5 +1,5 @@
-import * as HTMLWebpackIncludeAssetsPlugin from "html-webpack-include-assets-plugin";
 import * as HTMLWebpackPlugin from "html-webpack-plugin";
+import * as HTMLWebpackTagsPlugin from "html-webpack-tags-plugin";
 import { join, resolve } from "path";
 import {
   Configuration,
@@ -41,9 +41,9 @@ const config = (dirPath: string): Configuration => {
         template: join(dirPath, "/src/html/index.html"),
         title: "Webpack TypeScript",
       }),
-      new HTMLWebpackIncludeAssetsPlugin({
+      new HTMLWebpackTagsPlugin({
         append: false,
-        assets: ["libs.js"],
+        scripts: ["libs.js"],
         publicPath: "/",
       }),
     ],
