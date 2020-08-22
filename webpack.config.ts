@@ -6,7 +6,7 @@ import { Configuration as WebpackConfig } from "webpack";
 import devConfig from "./webpack/development";
 import prodConfig from "./webpack/production";
 
-const config = (env: any, argv: WebpackConfig): WebpackConfig => {
+const config = (_: any, args: WebpackConfig): WebpackConfig => { /* eslint-disable-line */
   /**
    * The common WebPack configuration no matter what environment it is run on
    */
@@ -14,7 +14,7 @@ const config = (env: any, argv: WebpackConfig): WebpackConfig => {
     entry: {
       app: "./src/ts/index.tsx",
     },
-    mode: argv.mode,
+    mode: args.mode,
     module: {
       rules: [{
         exclude: /node_modules/,
@@ -30,7 +30,7 @@ const config = (env: any, argv: WebpackConfig): WebpackConfig => {
     },
   };
 
-  const additionalConfig = argv.mode === "production" ? prodConfig(__dirname) : devConfig(__dirname);
+  const additionalConfig = args.mode === "production" ? prodConfig(__dirname) : devConfig(__dirname);
 
   /**
    * Merge the common configuration with environment-specific ones

@@ -7,13 +7,12 @@
  * 3rd-party libraries.
  */
 
-import { join } from "path";
 import { Configuration } from "webpack";
 
 import devDLLConfig from "./webpack/development.dll";
 import prodDLLConfig from "./webpack/production.dll";
 
-const config = (env: any, argv: Configuration): Configuration => {
+const config = (_: any, args: Configuration): Configuration => { /* eslint-disable-line */
   /**
    * The common WebPack configuration no matter what environment it is run on
    */
@@ -22,7 +21,7 @@ const config = (env: any, argv: Configuration): Configuration => {
     entry: {
       libs: ["./src/ts/dll.ts"], // Array of dlls or imports of libraries
     },
-    mode: argv.mode,
+    mode: args.mode,
     module: {
       rules: [{
         exclude: /node_modules/,
@@ -35,7 +34,7 @@ const config = (env: any, argv: Configuration): Configuration => {
     },
   };
 
-  const additionalDLLConfig = argv.mode === "production" ? prodDLLConfig(__dirname) : devDLLConfig(__dirname);
+  const additionalDLLConfig = args.mode === "production" ? prodDLLConfig(__dirname) : devDLLConfig(__dirname);
 
   /**
    * Merge the common configuration with environment-specific ones

@@ -10,7 +10,7 @@
     "compile:production:dll": "webpack --config webpack.config.dll.ts --mode=production",
     "compile:production:source": "webpack --mode=production",
     "start": "webpack-dev-server --mode=development",
-    "tslint": "tslint --project ./"
+    "lint": "eslint . --ext .ts"
   },
   "keywords": [
     "TypeScript",
