@@ -1,5 +1,5 @@
-import * as HTMLWebpackPlugin from "html-webpack-plugin";
-import * as HTMLWebpackTagsPlugin from "html-webpack-tags-plugin";
+import HTMLWebpackPlugin from "html-webpack-plugin";
+import HTMLWebpackTagsPlugin from "html-webpack-tags-plugin";
 import { join, resolve } from "path";
 import {
   Configuration,

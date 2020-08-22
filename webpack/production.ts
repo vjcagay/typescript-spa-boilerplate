@@ -1,7 +1,7 @@
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import * as CompressionWebpackPlugin from "compression-webpack-plugin";
-import * as HTMLWebpackPlugin from "html-webpack-plugin";
-import * as HTMLWebpackTagsPlugin from "html-webpack-tags-plugin";
+import CompressionWebpackPlugin from "compression-webpack-plugin";
+import HTMLWebpackPlugin from "html-webpack-plugin";
+import HTMLWebpackTagsPlugin from "html-webpack-tags-plugin";
 import { join, resolve } from "path";
 import { Configuration, DllReferencePlugin } from "webpack";
 

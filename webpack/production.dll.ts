@@ -1,5 +1,5 @@
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import * as CompressionWebpackPlugin from "compression-webpack-plugin";
+import CompressionWebpackPlugin from "compression-webpack-plugin";
 import { join } from "path";
 import { Configuration, DllPlugin } from "webpack";
 

@@ -12,7 +12,8 @@ import { Configuration } from "webpack";
 import devDLLConfig from "./webpack/development.dll";
 import prodDLLConfig from "./webpack/production.dll";
 
-const config = (_: any, args: Configuration): Configuration => { /* eslint-disable-line */
+const config = (_: any, args: Configuration): Configuration => {
+  /* eslint-disable-line */
   /**
    * The common WebPack configuration no matter what environment it is run on
    */
@@ -23,11 +24,13 @@ const config = (_: any, args: Configuration): Configuration => { /* eslint-disab
     },
     mode: args.mode,
     module: {
-      rules: [{
-        exclude: /node_modules/,
-        test: /\.ts?$/,
-        use: "ts-loader",
-      }],
+      rules: [
+        {
+          exclude: /node_modules/,
+          test: /\.ts?$/,
+          use: "ts-loader",
+        },
+      ],
     },
     resolve: {
       extensions: [".tsx", ".ts", ".js", ".sass", ".css"],
