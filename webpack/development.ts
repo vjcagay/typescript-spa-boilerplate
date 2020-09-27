@@ -1,3 +1,4 @@
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import HTMLWebpackPlugin from "html-webpack-plugin";
 import HTMLWebpackTagsPlugin from "html-webpack-tags-plugin";
 import { join, resolve } from "path";
@@ -5,7 +6,6 @@ import {
   Configuration,
   DevtoolModuleFilenameTemplateInfo,
   DllReferencePlugin,
-  HotModuleReplacementPlugin,
 } from "webpack";
 import { Configuration as DevServerConfig } from "webpack-dev-server";
 
@@ -30,7 +30,7 @@ const config = (dirPath: string): Configuration => {
       publicPath: "/",
     },
     plugins: [
-      new HotModuleReplacementPlugin(),
+      new ReactRefreshWebpackPlugin(),
       new DllReferencePlugin({
         context: ".",
         manifest: resolve(join(dirPath, "/dev/libs-manifest.json")),
