@@ -6,7 +6,8 @@ import { Configuration as WebpackConfig } from "webpack";
 import devConfig from "./webpack/development";
 import prodConfig from "./webpack/production";
 
-const config = (_: any, args: WebpackConfig): WebpackConfig => { /* eslint-disable-line */
+const config = (_: any, args: WebpackConfig): WebpackConfig => {
+  /* eslint-disable-line */
   /**
    * The common WebPack configuration no matter what environment it is run on
    */
@@ -16,21 +17,25 @@ const config = (_: any, args: WebpackConfig): WebpackConfig => { /* eslint-disab
     },
     mode: args.mode,
     module: {
-      rules: [{
-        exclude: /node_modules/,
-        test: /\.tsx?$/,
-        use: "ts-loader", // Change to loader: "ts-loader" if you need to pass options
-      }, {
-        test: /\.(eot|svg|ttf|otf|woff|woff2)$/,
-        use: "file-loader?name=[name].[ext]",
-      }],
+      rules: [
+        {
+          exclude: /node_modules/,
+          test: /\.tsx?$/,
+          loaders: ["babel-loader", "ts-loader"],
+        },
+        {
+          test: /\.(eot|svg|ttf|otf|woff|woff2)$/,
+          use: "file-loader?name=[name].[ext]",
+        },
+      ],
     },
     resolve: {
       extensions: [".tsx", ".ts", ".js"],
     },
   };
 
-  const additionalConfig = args.mode === "production" ? prodConfig(__dirname) : devConfig(__dirname);
+  const additionalConfig =
+    args.mode === "production" ? prodConfig(__dirname) : devConfig(__dirname);
 
   /**
    * Merge the common configuration with environment-specific ones
