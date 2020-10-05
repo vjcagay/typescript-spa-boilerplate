@@ -20,7 +20,7 @@
     "bundler"
   ],
   "author": "Vincent John Cagay",
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -76,5 +76,13 @@
       "json",
       "node"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vjcagay/webpack-typescript-styled-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vjcagay/webpack-typescript-styled-components/issues"
+  },
+  "homepage": "https://github.com/vjcagay/webpack-typescript-styled-components#readme"
 }
