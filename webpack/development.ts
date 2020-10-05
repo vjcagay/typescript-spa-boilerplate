@@ -30,7 +30,7 @@ const config = (dirPath: string): Configuration => {
       publicPath: "/",
     },
     plugins: [
-      new ReactRefreshWebpackPlugin(),
+      process.env.WEBPACK_DEV_SERVER && new ReactRefreshWebpackPlugin(),
       new DllReferencePlugin({
         context: ".",
         manifest: resolve(join(dirPath, "/dev/libs-manifest.json")),
@@ -46,7 +46,7 @@ const config = (dirPath: string): Configuration => {
         scripts: ["libs.js"],
         publicPath: "/",
       }),
-    ],
+    ].filter(Boolean),
   };
 };
 
