@@ -21,7 +21,7 @@ const config = (_: any, args: WebpackConfig): WebpackConfig => {
         {
           exclude: /node_modules/,
           test: /\.tsx?$/,
-          loaders: ["babel-loader", "ts-loader"],
+          loaders: ["ts-loader"],
         },
         {
           test: /\.(eot|svg|ttf|otf|woff|woff2)$/,
@@ -34,8 +34,7 @@ const config = (_: any, args: WebpackConfig): WebpackConfig => {
     },
   };
 
-  const additionalConfig =
-    args.mode === "production" ? prodConfig(__dirname) : devConfig(__dirname);
+  const additionalConfig = args.mode === "production" ? prodConfig(__dirname) : devConfig(__dirname);
 
   /**
    * Merge the common configuration with environment-specific ones

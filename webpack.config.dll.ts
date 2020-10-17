@@ -28,7 +28,7 @@ const config = (_: any, args: Configuration): Configuration => {
         {
           exclude: /node_modules/,
           test: /\.ts?$/,
-          loaders: ["babel-loader", "ts-loader"],
+          loaders: ["ts-loader"],
         },
       ],
     },
@@ -37,10 +37,7 @@ const config = (_: any, args: Configuration): Configuration => {
     },
   };
 
-  const additionalDLLConfig =
-    args.mode === "production"
-      ? prodDLLConfig(__dirname)
-      : devDLLConfig(__dirname);
+  const additionalDLLConfig = args.mode === "production" ? prodDLLConfig(__dirname) : devDLLConfig(__dirname);
 
   /**
    * Merge the common configuration with environment-specific ones
