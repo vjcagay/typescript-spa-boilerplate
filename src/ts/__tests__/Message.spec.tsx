@@ -6,6 +6,6 @@ import Message from "../Message";
 describe("message", () => {
   test("This is working", () => {
     const { container } = render(<Message />);
-    expect(container).toHaveTextContent("Hello World of TypeScript!");
+    expect(container).toHaveTextContent("Hello World!");
   });
 });
