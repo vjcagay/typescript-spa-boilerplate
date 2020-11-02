@@ -22,7 +22,7 @@ This boilerplate is designed to be as simplistic as it can be so that you can ad
 Clone this repo with your application name as the second argument:
 
 ```bash
-$ git clone https://github.com/vjcagay/webpack-typescript-styled-components.git <application-name>
+$ git clone https://github.com/vjcagay/typescript-spa-boilerplate.git <application-name>
 $ cd <application-name>
 ```
 
@@ -92,4 +92,4 @@ Please file an issue if you find a bug or have concerns or make a pull request i
 
 ## Author
 
-© [vjcagay](https://github.com/vjcagay), Released under the [MIT](https://github.com/vjcagay/webpack-typescript/blob/master/LICENSE) license.
+© [vjcagay](https://github.com/vjcagay), Released under the [MIT](https://github.com/vjcagay/typescript-spa-boilerplate/blob/master/LICENSE) license.
