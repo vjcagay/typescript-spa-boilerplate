@@ -1,4 +1,4 @@
-# Webpack Typescript
+# TypeScript SPA Boilerplate
 
 This is a boilerplate code that can get you started for developing applications written in [TypeScript](http://www.typescriptlang.org).
 

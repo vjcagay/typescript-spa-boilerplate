@@ -1,5 +1,5 @@
 {
-  "name": "webpack-typescript-styled-components",
+  "name": "typescript-spa-boilerplate",
   "version": "2.2.1",
   "description": "Webpack configuration for TypeScript projects",
   "main": "index.js",
