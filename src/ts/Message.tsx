@@ -24,7 +24,7 @@ const MessageComponent = () => (
   <MessageStyled>
     <img src="https://64.media.tumblr.com/a8d91d9d6f197e126351464305f75dd7/tumblr_msitq5qMwW1sg2d49o1_1280.gif" />
     <br />
-    <h1>Hello World!</h1>
+    <h1>Hello World!!!</h1>
     <p>You can now start building your application with TypeScript.</p>
     <br />
     <p>Happy coding!</p>

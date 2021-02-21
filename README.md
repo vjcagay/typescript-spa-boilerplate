@@ -10,7 +10,7 @@ Sure, there are more powerful boilerplate generators out there such as [Create R
 
 This boilerplate is designed to be as simplistic as it can be so that you can add more features yourself without much trouble:
 
-- Build with [webpack](https://webpack.js.org) 4
+- Build with [WebPack](https://webpack.js.org) 5
 - [Styled-Components](https://www.styled-components.com) support
 - Separate output files for vendor libraries using webpack's [DLLPlugin](https://webpack.js.org/plugins/dll-plugin)
 - [Hot Module Replacement ](https://webpack.js.org/concepts/hot-module-replacement) on the development server
@@ -18,6 +18,8 @@ This boilerplate is designed to be as simplistic as it can be so that you can ad
 - Unit Testing using [Jest](https://facebook.github.io/jest/)
 
 ## Setup
+
+> The instructions assume that you use NPM as your package manager. Feel free to use other package managers such as Yarn or PNPM.
 
 Clone this repo with your application name as the second argument:
 
@@ -30,17 +32,17 @@ Then delete this repo's git history and initialize a new one.
 
 Afterwards, `npm install` to install the dependencies.
 
-To access the development server, run `npm start` then go to `http://localhost:8080` in your web browser.
+To access the development server, run `npm start` then go to `http://0.0.0.0:8080` in your web browser.
 
-## Vendor Libraries/DLL
+## Making compiles faster using DLL
 
-To make compiles faster, you can separate the vendor libraries from application code by importing them inside `src/ts/dll.ts`. You will still need to import them in your code so that webpack can reference them from the vendor library manifest.
+To make compiles faster, you can separate the vendor libraries from application code by importing them inside `src/ts/dll.ts`. You will still need to import them in your code so that WebPack can reference them from the vendor library manifest.
 
 Example:
 
 ```typescript
 // index.tsx
-import * as React from "react";
+import React from "react";
 import styled from "styled-components";
 ```
 
@@ -50,26 +52,25 @@ import "react";
 import "styled-components";
 ```
 
-Therefore you need to compile the vendor libraries first before your application code. These have been already setup for both the development and production environments so all you need to do is:
+Therefore you need to compile the vendor libraries first before the application code:
 
 ```bash
-$ # Development: output will be on ./dev folder
-$ # Remember: The order matters!
-$ npm run compile:development:dll # compile the vendor libraries
-$ npm run compile:development:source # compile application code (optional)
+$ # Development mode. The order matters here.
+$ npm run dll # compile the vendor libraries
+$ npm start # start the dev server
 ```
 
+To compile for releasing in production:
+
 ```bash
-$ # Production: output will be on ./dist folder
-$ # Remember: The order matters!
-$ npm run compile:production:dll # compile the vendor libraries
-$ npm run compile:production:source # compile application code
+$ # Normally you do this in CI instead of local machine
+$ npm run dll -- --mode=production
+$ npm run source -- --mode=production
 ```
 
 ## Notes
 
-- You don't need to run `npm run compile:<environment>:dll` all the time but only when you add/remove libraries on `src/ts/dll.ts`.
-- `npm run compile:develoment:source` is optional. Running `npm start` will do this automatically as well as the starting the dev server.
+- You don't need to run `npm run dll` all the time but only when you add/remove libraries on `src/ts/dll.ts`.
 - Update `package.json` and modify the necessary fields you need to fit your application.
 - Modify `tsconfig.json` to add/remove TypeScript-specific features.
 

@@ -3,8 +3,8 @@ import styled, { createGlobalStyle } from "styled-components";
 import { reset } from "styled-reset";
 
 // Import fonts manually since styled-components does not support bundling
-import "../fonts/Inter-Regular.ttf";
-import "../fonts/Inter-Bold.ttf";
+import InterRegular from "../fonts/Inter-Regular.ttf";
+import InterBold from "../fonts/Inter-Bold.ttf";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -12,14 +12,14 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: "Inter";
     font-weight: regular;
-    src: url("./Inter-Regular.ttf");
+    src: url(${InterRegular});
     font-display: fallback;
   }
 
   @font-face {
     font-family: "Inter";
     font-weight: bold;
-    src: url("./Inter-Bold.ttf");
+    src: url(${InterBold});
     font-display: fallback;
   }
 

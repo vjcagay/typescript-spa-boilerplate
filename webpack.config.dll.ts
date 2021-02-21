@@ -7,42 +7,86 @@
  * 3rd-party libraries.
  */
 
-import { Configuration } from "webpack";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import CompressionWebpackPlugin from "compression-webpack-plugin";
+import { join } from "path";
+import { Configuration, DllPlugin } from "webpack";
 
-import devDLLConfig from "./webpack/development.dll";
-import prodDLLConfig from "./webpack/production.dll";
-
-const config = (_: any, args: Configuration): Configuration => {
-  /* eslint-disable-line */
+const config = (_env: any, args: any): Configuration => {
   /**
    * The common WebPack configuration no matter what environment it is run on
    */
-  const commonDLLConfig: Configuration = {
+  const commonConfig: Configuration = {
     devtool: "inline-source-map",
     entry: {
       libs: ["./src/ts/dll.ts"], // Array of dlls or imports of libraries
     },
-    mode: args.mode,
+    mode: args.mode || "development",
     module: {
       rules: [
         {
           exclude: /node_modules/,
-          test: /\.ts?$/,
-          loaders: ["ts-loader"],
+          test: /\.ts?$/i,
+          loader: "ts-loader",
         },
       ],
     },
     resolve: {
-      extensions: [".tsx", ".ts", ".js", ".sass", ".css"],
+      extensions: [".tsx", ".ts", ".js"],
     },
   };
 
-  const additionalDLLConfig = args.mode === "production" ? prodDLLConfig(__dirname) : devDLLConfig(__dirname);
+  // Config for development
+  const devConfig: Configuration = {
+    devtool: "eval-source-map",
+    output: {
+      filename: "[name].js",
+      library: "libs",
+      path: join(__dirname, "/dev"),
+      publicPath: "/",
+    },
+    plugins: [
+      new CleanWebpackPlugin({
+        cleanOnceBeforeBuildPatterns: [join(__dirname, "/dev")],
+        verbose: true,
+      }),
+      new DllPlugin({
+        name: "[name]",
+        path: join(__dirname, "/dev/[name]-manifest.json"),
+      }),
+    ],
+  };
+
+  // Config for production
+  const prodConfig: Configuration = {
+    devtool: "source-map",
+    output: {
+      filename: "[name].[fullhash].js",
+      library: "libs",
+      path: join(__dirname, "/dist"),
+    },
+    plugins: [
+      new CleanWebpackPlugin({
+        cleanOnceBeforeBuildPatterns: [join(__dirname, "/dist/")],
+        verbose: true,
+      }),
+      new DllPlugin({
+        name: "[name]",
+        path: join(__dirname, "/dist/[name]-manifest.json"),
+      }),
+      new CompressionWebpackPlugin({
+        algorithm: "gzip",
+        minRatio: 0.8,
+        test: /\.(js|html|css)$/,
+        threshold: 10240, // Customize this to the amount you think is big enough to enable compression (in bytes)
+      }),
+    ],
+  };
 
   /**
    * Merge the common configuration with environment-specific ones
    */
-  return { ...commonDLLConfig, ...additionalDLLConfig };
+  return { ...commonConfig, ...(args.mode === "production" ? prodConfig : devConfig) };
 };
 
 export default config;
