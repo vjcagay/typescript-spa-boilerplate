@@ -108,24 +108,25 @@ const config = (_env: any, args: any): Configuration => {
         template: join(__dirname, "/src/html/index.html"),
         title: "Webpack TypeScript",
       }),
-      new HTMLWebpackTagsPlugin({
-        append: false,
-        scripts: [
-          {
-            glob: "libs.*.js",
-            globPath: join(__dirname, "/dist"),
-            path: "./",
-          },
-        ],
-        publicPath: "/",
-      }),
+      args.mode === "production" &&
+        new HTMLWebpackTagsPlugin({
+          append: false,
+          scripts: [
+            {
+              glob: "libs.*.js",
+              globPath: join(__dirname, "/dist"),
+              path: "./",
+            },
+          ],
+          publicPath: "/",
+        }),
       new CompressionWebpackPlugin({
         algorithm: "gzip",
         minRatio: 0.8,
         test: /\.(js|html|css)$/,
         threshold: 10240, // Customize this to the amount you think is big enough to enable compression (in bytes)
       }),
-    ],
+    ].filter(Boolean),
   };
 
   /**
