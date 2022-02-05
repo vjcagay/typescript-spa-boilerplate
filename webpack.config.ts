@@ -42,11 +42,13 @@ const config = (_env: any, args: any): Configuration => {
   const devConfig: Configuration = {
     devServer: ((): DevServerConfig => {
       return {
-        contentBase: join(__dirname, "dev"),
+        // contentBase: join(__dirname, "dev"),
+        
         host: "0.0.0.0",
-        hotOnly: true,
-        inline: true,
-        publicPath: "/",
+        // hotOnly: true,
+        // inline: true,
+        // publicPath: "/",
+        hot: true,
       };
     })(),
     devtool: "eval-source-map",
