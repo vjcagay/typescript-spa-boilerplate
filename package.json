@@ -3,12 +3,13 @@
   "version": "4.0.1",
   "description": "Webpack configuration for TypeScript projects",
   "main": "index.js",
+  "homepage": "/",
   "scripts": {
     "test": "jest --coverage",
-    "dll": "webpack --config webpack.config.dll.ts",
-    "source": "webpack",
-    "start": "webpack serve",
-    "lint": "eslint . --ext .ts"
+    "start": "webpack --config webpack.config.dll.ts && webpack serve",
+    "lint": "eslint . --ext .ts",
+    "build": "webpack --config=webpack.config.dll.ts --mode=production && webpack --mode=production",
+    "postbuild": "react-snap"
   },
   "keywords": [
     "TypeScript",
@@ -49,6 +50,7 @@
     "jest": "^27.4.7",
     "react-refresh": "^0.11.0",
     "react-refresh-typescript": "^2.0.3",
+    "react-snap": "^1.23.0",
     "ts-jest": "^27.1.3",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",
@@ -78,6 +80,5 @@
   },
   "bugs": {
     "url": "https://github.com/vjcagay/typescript-spa-boilerplate/issues"
-  },
-  "homepage": "https://github.com/vjcagay/typescript-spa-boilerplate#readme"
+  }
 }

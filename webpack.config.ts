@@ -85,17 +85,17 @@ const config = (_env: any, args: any): Configuration => {
     devtool: "source-map",
     output: {
       filename: "[name].[fullhash].js",
-      path: join(__dirname, "/dist"),
+      path: join(__dirname, "/build"),
       publicPath: "/",
     },
     plugins: [
       new CleanWebpackPlugin({
-        cleanOnceBeforeBuildPatterns: [join(__dirname, "/dist/app.*.*"), join(__dirname, "/dist/styles.*.*")],
+        cleanOnceBeforeBuildPatterns: [join(__dirname, "/build/app.*.*"), join(__dirname, "/build/styles.*.*")],
         verbose: true,
       }),
       new DllReferencePlugin({
         context: __dirname,
-        manifest: resolve(join(__dirname, "/dist/libs-manifest.json")),
+        manifest: resolve(join(__dirname, "/build/libs-manifest.json")),
       }),
       new HTMLWebpackPlugin({
         filename: "index.html",
@@ -116,7 +116,7 @@ const config = (_env: any, args: any): Configuration => {
           scripts: [
             {
               glob: "libs.*.js",
-              globPath: join(__dirname, "/dist"),
+              globPath: join(__dirname, "/build"),
               path: "./",
             },
           ],

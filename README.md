@@ -52,40 +52,8 @@ import "react";
 import "styled-components";
 ```
 
-Therefore you need to compile the vendor libraries first before the application code:
+Therefore you need to compile the vendor libraries first before the application code. You can see it on the `package.json` scripts.
 
-```bash
-$ # Development mode. The order matters here.
-$ npm run dll # compile the vendor libraries
-$ npm start # start the dev server
-```
-
-To compile for releasing in production:
-
-```bash
-$ # Normally you do this in CI instead of local machine
-$ npm run dll -- --mode=production
-$ npm run source -- --mode=production
-```
-
-## Notes
-
-- You don't need to run `npm run dll` all the time but only when you add/remove libraries on `src/ts/dll.ts`.
-- Update `package.json` and modify the necessary fields you need to fit your application.
-- Modify `tsconfig.json` to add/remove TypeScript-specific features.
-
-## For Visual Studio Code Users
-
-To enable ESLint for TypeScript files, configure the plugin to:
-
-```json
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ]
-```
 
 ## Contributing
 

@@ -63,16 +63,16 @@ const config = (_env: any, args: any): Configuration => {
     output: {
       filename: "[name].[fullhash].js",
       library: "libs",
-      path: join(__dirname, "/dist"),
+      path: join(__dirname, "/build"),
     },
     plugins: [
       new CleanWebpackPlugin({
-        cleanOnceBeforeBuildPatterns: [join(__dirname, "/dist/")],
+        cleanOnceBeforeBuildPatterns: [join(__dirname, "/build/")],
         verbose: true,
       }),
       new DllPlugin({
         name: "[name]",
-        path: join(__dirname, "/dist/[name]-manifest.json"),
+        path: join(__dirname, "/build/[name]-manifest.json"),
       }),
       new CompressionWebpackPlugin({
         algorithm: "gzip",
